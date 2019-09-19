@@ -1,0 +1,29 @@
+digraph Laundry {
+    rankdir=LR;
+
+    node [shape=doublecircle, label="Reset", style=filled, fillcolor="#799EF2"] Reset;
+    node [shape=circle, label="Done", style=filled, fillcolor="#799EF2"] Done;
+    node [shape=circle, label="Drying", style=filled, fillcolor="#799EF2"] Drying;
+    node [shape=circle, label="Washing", style=filled, fillcolor="#799EF2"] Washing;
+    node [shape=circle, label="Dryer_Heating", style=filled, fillcolor="#79CDF2"] Dryer_Heating;
+    node [shape=circle, label="Washer_WaterFill", style=filled, fillcolor="#B279F2"] Washer_WaterFill;
+    node [shape=circle, label="Dryer_Spin", style=filled, fillcolor="#79CDF2"] Dryer_Spin;
+    node [shape=circle, label="Washer_Spin", style=filled, fillcolor="#B279F2"] Washer_Spin;
+    node [shape=circle, label="Dryer_CoolDown", style=filled, fillcolor="#79CDF2"] Dryer_CoolDown;
+    node [shape=circle, label="Washer_Drain", style=filled, fillcolor="#B279F2"] Washer_Drain;
+    node [shape=circle, label="Dryer_Done", style=filled, fillcolor="#79CDF2"] Dryer_Done;
+    node [shape=circle, label="Washer_Done", style=filled, fillcolor="#B279F2"] Washer_Done;
+
+    Done    ->  Reset;
+    Drying    ->  Dryer_Heating [ label = "dryer_door == 1'h1" ];
+    Reset    ->  Washing [ label = "washer_door == 1'h1" ];
+    Washing    ->  Washer_WaterFill;
+    Dryer_Heating    ->  Dryer_Spin;
+    Washer_WaterFill    ->  Washer_Spin;
+    Dryer_Spin    ->  Dryer_CoolDown;
+    Washer_Spin    ->  Washer_Drain;
+    Dryer_CoolDown    ->  Dryer_Done;
+    Washer_Drain    ->  Washer_Done;
+    Dryer_Done    ->  Done;
+    Washer_Done    ->  Drying;
+}

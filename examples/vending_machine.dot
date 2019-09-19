@@ -1,0 +1,19 @@
+digraph VEND {
+    rankdir=LR;
+
+    node [shape=doublecircle, label="Reset", style=filled, fillcolor="#799EF2"] Reset;
+    node [shape=circle, label="Fifteen", style=filled, fillcolor="#799EF2"] Fifteen;
+    node [shape=circle, label="Five", style=filled, fillcolor="#799EF2"] Five;
+    node [shape=circle, label="Ten", style=filled, fillcolor="#799EF2"] Ten;
+    node [shape=circle, label="Twenty", style=filled, fillcolor="#799EF2"] Twenty;
+
+    Fifteen    ->  Twenty [ label = "dime == 1'h1" ];
+    Fifteen    ->  Twenty [ label = "nickel == 1'h1" ];
+    Five    ->  Fifteen [ label = "dime == 1'h1" ];
+    Five    ->  Ten [ label = "nickel == 1'h1" ];
+    Reset    ->  Ten [ label = "dime == 1'h1" ];
+    Reset    ->  Five [ label = "nickel == 1'h1" ];
+    Ten    ->  Twenty [ label = "dime == 1'h1" ];
+    Ten    ->  Fifteen [ label = "nickel == 1'h1" ];
+    Twenty    ->  Reset;
+}
